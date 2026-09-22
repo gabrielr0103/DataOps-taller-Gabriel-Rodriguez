@@ -16,21 +16,31 @@ control de versiones, pruebas automatizadas y CI/CD.
 5. Instalar dependencias: `pip install -r requirements.txt`
 
 ## Estructura del repositorio
-dataops-taller-gabriel-rodriguez/
-├── .github/workflows/ci.yml
-├── data/
-├── notebooks/exploracion.ipynb
+dataops-taller-gabriel-rodriguez/ │ ├── .github/ │ └── workflows/ │ └── ci.yml │ ├── data/ │ ├── notebooks/ │ └── exploracion.ipynb │ ├── src/ │ ├── extract.py │ ├── transform.py │ ├── train.py │ └── utils.py │ ├── tests/ │ ├── test_extract.py │ ├── test_transform.py │ └── test_train.py │ ├── scripts/ │ └── create_db.py │ ├── requirements.txt ├── .gitignore └── README.md
 
 
 ## Comandos básicos de Git utilizados
-- `git checkout -b feature/pipeline-inicial` — crear la rama de trabajo
-- `git add <archivo>` — preparar cambios (staging)
-- `git commit -m "mensaje"` — confirmar cambios de forma atómica
-- `git push -u origin feature/pipeline-inicial` — subir la rama al repositorio remoto
-├── src/ (extract.py, transform.py, train.py, utils.py)
-├── tests/ (test_extract.py, test_transform.py, test_train.py)
-├── scripts/create_db.py
-├── requirements.txt
-├── .gitignore
-└── README.md
+
+Durante el desarrollo del proyecto se utilizaron los siguientes comandos:
+
+# Crear la rama de trabajo
+git checkout -b feature/pipeline-inicial
+
+# Preparar los cambios
+git add <archivo>
+
+# Confirmar los cambios
+git commit -m "mensaje"
+
+# Subir la rama al repositorio remoto
+git push -u origin feature/pipeline-inicial
+
+```bash
+### Descripción
+
+* `git checkout -b feature/pipeline-inicial`: crea la rama de trabajo.
+* `git add <archivo>`: prepara los cambios para el commit.
+* `git commit -m "mensaje"`: confirma los cambios realizados.
+* `git push -u origin feature/pipeline-inicial`: sube la rama al repositorio remoto.
+```
 
