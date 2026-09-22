@@ -16,6 +16,7 @@ control de versiones, pruebas automatizadas y CI/CD.
 5. Instalar dependencias: `pip install -r requirements.txt`
 
 ## Estructura del repositorio
+
 dataops-taller-gabriel-rodriguez/ 
 │
 ├── .github/ 
