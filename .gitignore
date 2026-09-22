@@ -5,7 +5,8 @@ env/
 # Archivos de datos grandes
 *.csv
 *.db
-data/
+data/*
+!data/.gitkeep
 
 # Configuración sensible
 .env
