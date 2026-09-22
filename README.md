@@ -16,7 +16,7 @@ control de versiones, pruebas automatizadas y CI/CD.
 5. Instalar dependencias: `pip install -r requirements.txt`
 
 ## Estructura del repositorio
-
+```bash
 dataops-taller-gabriel-rodriguez/ 
 │
 ├── .github/ 
@@ -45,7 +45,7 @@ dataops-taller-gabriel-rodriguez/
 ├── requirements.txt 
 ├── .gitignore 
 └── README.md
-
+```
 
 ## Comandos básicos de Git utilizados
 
@@ -69,4 +69,3 @@ git push -u origin feature/pipeline-inicial
 * `git add <archivo>`: prepara los cambios para el commit.
 * `git commit -m "mensaje"`: confirma los cambios realizados.
 * `git push -u origin feature/pipeline-inicial`: sube la rama al repositorio remoto.
-
