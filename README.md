@@ -43,7 +43,8 @@ dataops-taller-gabriel-rodriguez/
 ├── scripts/ 
 │   └── create_db.py 
 │ 
-├── requirements.txt 
+├── requirements.txt
+├── pytest.ini
 ├── .gitignore 
 └── README.md
 ```
@@ -83,3 +84,20 @@ El pipeline se ejecuta encadenando los módulos de `src/`:
 Los archivos generados (`data/ventas.db`, `data/aggregated_sales.csv`,
 `models/model.pkl`) no se versionan en Git: se generan localmente al
 ejecutar el pipeline.
+
+## Pruebas
+El proyecto cuenta con tres niveles de pruebas automatizadas, ubicadas en tests:
+
+- **Unitarias** (test_transform.py): validan la lógica de limpieza y
+  cálculo de métricas de forma aislada, con datos de ejemplo controlados.
+- **Calidad de datos** (test_data_quality.py): validan el esquema y las
+  reglas de negocio sobre los datos crudos de ventas.db (columnas
+  esperadas, valores no negativos, sin fechas futuras).
+- **Integración** (test_integration.py): ejecuta el pipeline completo
+  (extraer → transformar → agregar) y valida el resultado final.
+
+Para ejecutarlas:
+```bash
+python3 scripts/create_db.py   # si aún no existe la base de datos
+pytest -v
+```
