@@ -1,2 +1,5 @@
-python 3.
 pandas
+scikit-learn
+joblib
+pytest
+    
