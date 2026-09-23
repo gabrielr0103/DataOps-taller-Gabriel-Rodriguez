@@ -2,6 +2,7 @@
 Módulo de transformación de datos.
 Limpia los datos extraídos y calcula métricas de negocio.
 """
+
 import pandas as pd
 
 
