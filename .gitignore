@@ -16,3 +16,6 @@ data/*
 
 #Modelos
 models/
+
+__pycache__/
+*.pyc
