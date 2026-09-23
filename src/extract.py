@@ -3,6 +3,7 @@ Módulo de extracción de datos.
 Lee la tabla ventas desde la base de datos SQLite y la retorna
 como un DataFrame de pandas.
 """
+
 import os
 import sqlite3
 
