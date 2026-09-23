@@ -13,3 +13,6 @@ data/*
 
 # Salidas de notebooks
 .ipynb_checkpoints/
+
+#Modelos
+models/
