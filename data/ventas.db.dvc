@@ -1,0 +1,5 @@
+outs:
+- md5: 37762df18722a1c32996f8ad6d93baf3
+  size: 16384
+  hash: md5
+  path: ventas.db
