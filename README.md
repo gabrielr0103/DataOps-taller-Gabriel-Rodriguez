@@ -1,2 +1,2 @@
 # DataOps-taller-Gabriel-Rodriguez
-Pipeline de datos taller practico ENDO
+Todo el contenido del repositorio se encuentra en la rama feature/pipeline - inicial
