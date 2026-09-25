@@ -101,3 +101,19 @@ Para ejecutarlas:
 python3 scripts/create_db.py   # si aún no existe la base de datos
 pytest -v
 ```
+
+## CI/CD
+El proyecto usa **GitHub Actions** (`.github/workflows/ci.yml`) para automatizar
+la validación de cada cambio. El pipeline se dispara con cada `push` a `main` o
+a cualquier rama `feature/*`, y con cada Pull Request hacia `main`.
+
+Pasos del job `build-and-test`:
+1. Checkout del código.
+2. Configuración de Python 3.9.
+3. Instalación de dependencias (`requirements.txt`).
+4. Creación de la base de datos de prueba.
+5. Análisis estático: `pylint` (calidad), `black --check` (formato), `bandit` (seguridad).
+6. Pruebas unitarias con cobertura (`pytest --cov=src`).
+7. Pruebas de calidad de datos.
+8. Entrenamiento del modelo (`python -m src.train`).
+9. Publicación del modelo entrenado como artefacto descargable de la ejecución.
