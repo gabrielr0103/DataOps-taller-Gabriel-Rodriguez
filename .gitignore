@@ -7,6 +7,8 @@ env/
 *.db
 data/*
 !data/.gitkeep
+!data/*.dvc
+!data/.gitignore    
 
 # Configuración sensible
 .env
