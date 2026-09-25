@@ -14,38 +14,45 @@ control de versiones, pruebas automatizadas y CI/CD.
 3. Crear entorno virtual: `python -m venv venv`
 4. Activar entorno: `source venv/bin/activate` (Mac/Linux)
 5. Instalar dependencias: `pip install -r requirements.txt`
-6. 6. Generar la base de datos de prueba: `python3 scripts/create_db.py`
+6. Generar la base de datos de prueba: `python3 scripts/create_db.py`
 
 ## Estructura del repositorio
 ```bash
-dataops-taller-gabriel-rodriguez/ 
+dataops-taller-gabriel-rodriguez/
 │
-├── .github/ 
-│ └── workflows/ 
-│     └── ci.yml 
-│ 
-├── data/ 
-│ 
-├── notebooks/ 
-│   └── exploracion.ipynb 
-│ 
-├── src/ 
-│   ├── extract.py 
-│   ├── transform.py 
-│   ├── train.py 
-│   └── utils.py 
-│ 
-├── tests/ 
-│   ├── test_extract.py 
-│   ├── test_transform.py 
-│   └── test_train.py 
-│ 
-├── scripts/ 
-│   └── create_db.py 
-│ 
+├── .dvc/
+│   └── config
+├── .dvcignore
+├── .github/
+│   └── workflows/
+│       └── ci.yml
+├── data/
+│   ├── .gitkeep
+│   └── ventas.db.dvc
+├── migrations/
+│   ├── V001_create_ventas_table.sql
+│   ├── V002_add_index_on_fecha.sql
+│   └── V003_add_column_descuento.sql
+├── notebooks/
+│   └── exploracion.ipynb
+├── src/
+│   ├── __init__.py
+│   ├── extract.py
+│   ├── transform.py
+│   ├── train.py
+│   └── utils.py
+├── tests/
+│   ├── test_extract.py
+│   ├── test_transform.py
+│   ├── test_train.py
+│   ├── test_data_quality.py
+│   └── test_integration.py
+├── scripts/
+│   ├── create_db.py
+│   └── create_snapshot.py
 ├── requirements.txt
 ├── pytest.ini
-├── .gitignore 
+├── .gitignore
 └── README.md
 ```
 
@@ -117,3 +124,23 @@ Pasos del job `build-and-test`:
 7. Pruebas de calidad de datos.
 8. Entrenamiento del modelo (`python -m src.train`).
 9. Publicación del modelo entrenado como artefacto descargable de la ejecución.
+
+
+## Versionamiento de datos y esquemas
+
+- **Datos** (DVC): `data/ventas.db` se trackea con DVC
+  en vez de Git directamente, Git guarda solo el puntero `ventas.db.dvc`
+  (con el hash del contenido), mientras el archivo real se sincroniza a
+  un remoto configurado con `dvc push` / `dvc pull`. En este proyecto el
+  remoto es una carpeta local (`/tmp/dvcstore`), solo para fines
+  demostrativos del taller en un entorno real sería almacenamiento en
+  la nube (S3, GCS, Azure Blob, etc.).
+- **Esquema** (`migrations/`): cambios estructurales a la tabla `ventas`
+  se documentan como scripts SQL secuenciales y numerados
+  (`V001`, `V002`, `V003`), aplicables con `sqlite3 data/ventas.db < migrations/<archivo>.sql`.
+  En un pipeline de CI/CD real, estas migraciones se aplicarían
+  automáticamente con una herramienta como Flyway antes de correr las
+  pruebas.
+- **Snapshots** (`scripts/create_snapshot.py`): genera copias fechadas
+  de la base de datos en `data/snapshots/ventas_YYYYMMDD.db`, útiles
+  como respaldo puntual independiente del versionamiento continuo de DVC.
