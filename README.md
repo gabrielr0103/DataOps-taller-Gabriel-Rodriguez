@@ -147,8 +147,6 @@ Pasos del job `build-and-test`:
 
 
 ## Diagrama de flujo del pipeline
-
-## Diagrama de flujo del pipeline
 ```bash
 Base de datos (data/ventas.db)
         │
